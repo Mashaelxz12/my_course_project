@@ -2,7 +2,10 @@ const express = require('express');
 const app = express();
 const port = 3000; // يمكنك تغييره حسب الحاجة
 
-app.use(express.static('public')); // هذا يسمح لك بالوصول إلى الملفات في مجلد public
+// middleware للوصول إلى الملفات الثابتة (public)
+app.use(express.static('public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
@@ -11,6 +14,7 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
+
 // مسار آخر
 app.get('/about', (req, res) => {
     res.sendFile(__dirname + '/about.html');
@@ -20,8 +24,6 @@ app.get('/about', (req, res) => {
 app.get('/api/data', (req, res) => {
     res.json({ message: 'Hello, this is API data!' });
 });
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // مسار يتفاعل مع بيانات POST
 app.post('/submit-form', (req, res) => {
@@ -29,6 +31,7 @@ app.post('/submit-form', (req, res) => {
     console.log('Received form data:', formData);
     res.send('Form submitted successfully!');
 });
+
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/your-database-name', { useNewUrlParser: true, useUnifiedTopology: true });
 
