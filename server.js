@@ -78,7 +78,8 @@ app.get('/api/examples', async (req, res) => {
 
 app.get('/artists', (req, res) => {
     // قم بتنفيذ اللوجيك هنا لاسترجاع الفنانين من قاعدة البيانات
-    const artists = /* لوجيك لاسترجاع الفنانين من قاعدة البيانات */;
+    
+    const artists = await ArtistModel.find(); // استخدم كود فعلي لاسترجاع الفنانين من قاعدة البيانات
 
     res.render('artists', { artists }); // يفترض أن يكون لديك محرك قوالب (مثل EJS) لتقديم HTML مع البيانات الديناميكية
 });
