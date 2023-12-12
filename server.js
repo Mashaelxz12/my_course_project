@@ -8,7 +8,7 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect('mongodb://localhost/your-database-name', {
+mongoose.connect('mongodb://localhost/m.db', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });

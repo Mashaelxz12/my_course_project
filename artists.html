@@ -20,13 +20,13 @@
     <section>
         <h2>الرسامون المشهورون</h2>
         <ul id="artists-list"></ul>
-        <img src="image/رسام2.jpg" alt="Girl with a jacket" width="500" height="600">
-        <img src="image/رسام.jpg" alt="Girl with a jacket" width="500" height="600">
+        <figure> <img src="image/رسام2.jpg" alt="Girl with a jacket" width="500" height="600"> </figure>
+        <figure><img src="image/رسام.jpg" alt="Girl with a jacket" width="500" height="600"></figure>
 
 
         <script>
             // Assuming you have a global variable 'artists' defined in your server code
-            const artists = /* Logic to fetch artists from the database */ ;
+            const artists =m.db;
 
             // Display artists in the list
             const artistsList = document.getElementById('artists-list');
