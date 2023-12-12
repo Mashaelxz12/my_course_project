@@ -19,11 +19,20 @@
 
     <section>
         <h2>الرسامون المشهورون</h2>
-        <ul id="artists-list">
-            <% artists.forEach(artist => { %>
-                <li><%= artist.name %></li>
-            <% }); %>
-        </ul>
+        <ul id="artists-list"></ul>
+
+        <script>
+            // Assuming you have a global variable 'artists' defined in your server code
+            const artists = /* Logic to fetch artists from the database */ ;
+
+            // Display artists in the list
+            const artistsList = document.getElementById('artists-list');
+            artists.forEach(artist => {
+                const listItem = document.createElement('li');
+                listItem.textContent = artist.name;
+                artistsList.appendChild(listItem);
+            });
+        </script>
     </section>
 
     <footer>
