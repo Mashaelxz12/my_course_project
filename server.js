@@ -71,20 +71,11 @@ User.deleteOne({ username: 'john_doe' })
 app.get('/artists', async (req, res) => {
     try {
         // استخدام async/await هنا
-        const artists = await ArtistModel.find();
+        const artists = await User.find(); // استخدم كود فعلي لاسترجاع الفنانين من قاعدة البيانات
         res.render('artists', { artists });
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });
     }
-});
-
-
-app.get('/artists', (req, res) => {
-    // قم بتنفيذ اللوجيك هنا لاسترجاع الفنانين من قاعدة البيانات
-    
-    const artists = await ArtistModel.find(); // استخدم كود فعلي لاسترجاع الفنانين من قاعدة البيانات
-
-    res.render('artists', { artists }); // يفترض أن يكون لديك محرك قوالب (مثل EJS) لتقديم HTML مع البيانات الديناميكية
 });
 
 app.listen(port, () => {
