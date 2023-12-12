@@ -70,15 +70,20 @@ User.deleteOne({ username: 'john_doe' })
         console.error('حدث خطأ أثناء حذف المستخدم:', error);
     });
 
-app.get('/artists', async (req, res) => {
-    try {
-        
-        const artists = await User.find();
-        res.render('artists', { artists });
-    } catch (error) {
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
+    app.get('/artists', async (req, res) => {
+        try {
+            const artists = await User.find();
+            res.render('artists', { artists });
+        } catch (error) {
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    });
+    
 });
+app.get('/login.html', (req, res) => {
+    res.sendFile(__dirname + '/public/login.html');
+});
+
 
 app.listen(port, () => {
     console.log(`الخادم يعمل على http://localhost:${port}`);
