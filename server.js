@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const port = 3000;
+const port = 3000; 
+
 
 app.use(express.static('public'));
 app.use(express.json());
@@ -30,17 +31,19 @@ const newUser = new User({
     password: 'securepassword',
 });
 
-newUser.save((err, user) => {
-    if (err) return console.error(err);
-    console.log('تمت إضافة مستخدم جديد:', user);
-});
+newUser.save()
+    .then((user) => {
+        console.log('تمت إضافة مستخدم جديد:', user);
+    })
+    
+
 
 User.find({})
     .then((users) => {
         console.log('جميع المستخدمين:', users);
     })
     .catch((error) => {
-        console.error('حدث خطأ أثناء البحث عن المستخدمين:', error);
+        console.error('حدث خطأ أثناء حفظ المستخدم:', error);
     });
 
 User.findOne({ username: 'john_doe' })
@@ -67,11 +70,10 @@ User.deleteOne({ username: 'john_doe' })
         console.error('حدث خطأ أثناء حذف المستخدم:', error);
     });
 
-// تحويل الدالة الرئيسية إلى async
 app.get('/artists', async (req, res) => {
     try {
-        // استخدام async/await هنا
-        const artists = await User.find(); // استخدم كود فعلي لاسترجاع الفنانين من قاعدة البيانات
+        
+        const artists = await User.find();
         res.render('artists', { artists });
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });
