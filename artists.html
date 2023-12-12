@@ -5,52 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artists</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* أسلوب الصفحة */
-    </style>
+    <!-- Additional styles or scripts -->
 </head>
 <body>
-    <script src="public/scripts.js"></script>
-    <script src="server.js"></script>
-    <script>
-        // استخدام Fetch API لجلب بيانات الفنانين من API
-        fetch('/api/artists')
-            .then(response => response.json())
-            .then(artists => {
-                const artistsList = document.getElementById('artists-list');
-
-                // عرض الفنانين في القائمة
-                artists.forEach(artist => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = artist.name;
-                    artistsList.appendChild(listItem);
-                });
-            })
-            .catch(error => console.error('Error fetching artists:', error));
-    </script>
-
     <header>
-        <!-- عنوان الصفحة -->
         <h1>صفحة الرسامين</h1>
-        <!-- قائمة التنقل -->
         <nav>
             <a href="http://localhost:3000/index.html">الرئيسية</a>
             <a href="http://localhost:3000/artists">الرسامون</a>
-            <a href="http://localhost:3000/paintings.html">اللوحات</a>
-            <a href="http://localhost:3000/education.html">التعليم والتدريب</a>
-            <a href="http://localhost:3000/login.html">تسجيل الدخول</a>
-            <a href="http://localhost:3000/search.html">البحث</a>
+            <!-- Add other navigation links as needed -->
         </nav>
     </header>
 
     <section>
-        <!-- محتوى الصفحة هنا -->
         <h2>الرسامون المشهورون</h2>
-        <ul id="artists-list"></ul>
+        <ul id="artists-list">
+            <% artists.forEach(artist => { %>
+                <li><%= artist.name %></li>
+            <% }); %>
+        </ul>
     </section>
 
     <footer>
-        <!-- تذييل الصفحة -->
         <h3>طرق التواصل</h3>
         <p>يوتيوب | تويتر | ايميل</p>
     </footer>

@@ -3,15 +3,12 @@ const mongoose = require('mongoose');
 const app = express();
 const port = 3000;
 
-// middleware للوصول إلى الملفات الثابتة (public)
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// اتصال بقاعدة البيانات
 mongoose.connect('mongodb://localhost/your-database-name', { useNewUrlParser: true, useUnifiedTopology: true });
 
-// تعريف نموذج مثال
 const Schema = mongoose.Schema;
 const exampleSchema = new Schema({
     name: String,
@@ -20,7 +17,6 @@ const exampleSchema = new Schema({
 
 const ExampleModel = mongoose.model('Example', exampleSchema);
 
-// مسار API لجلب بيانات مثال
 app.get('/api/examples', async (req, res) => {
     try {
         const examples = await ExampleModel.find();
@@ -30,9 +26,11 @@ app.get('/api/examples', async (req, res) => {
     }
 });
 
-// مسار لجلب صفحة الرسامين
 app.get('/artists', (req, res) => {
-    res.sendFile(__dirname + '/artists.html');
+    // Assuming you have a list of artists, replace the comment with the actual logic to fetch artists from the database
+    const artists = /* Logic to fetch artists from the database */;
+
+    res.render('artists', { artists }); // Assuming you have a template engine (like EJS) for rendering HTML with dynamic data
 });
 
 app.listen(port, () => {
