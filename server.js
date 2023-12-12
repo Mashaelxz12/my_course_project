@@ -67,14 +67,17 @@ User.deleteOne({ username: 'john_doe' })
         console.error('حدث خطأ أثناء حذف المستخدم:', error);
     });
 
-app.get('/api/examples', async (req, res) => {
+// تحويل الدالة الرئيسية إلى async
+app.get('/artists', async (req, res) => {
     try {
-        const examples = await ExampleModel.find();
-        res.json(examples);
+        // استخدام async/await هنا
+        const artists = await ArtistModel.find();
+        res.render('artists', { artists });
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
 
 app.get('/artists', (req, res) => {
     // قم بتنفيذ اللوجيك هنا لاسترجاع الفنانين من قاعدة البيانات
